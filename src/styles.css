@@ -1,0 +1,9 @@
+body {
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  background-image: linear-gradient(
+      rgba(85, 85, 85, 0.4),
+      rgba(85, 85, 85, 0.405)
+    ),
+    url("https://i.pinimg.com/originals/da/c5/fd/dac5fdeefe64437781c32499352573bb.jpg");
+    background-size: 100%;
+}

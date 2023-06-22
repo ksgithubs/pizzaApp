@@ -1,0 +1,149 @@
+<div class="container">
+  <div style="padding: 10px;"
+ class="container-fluid">
+    <h1>OUR PRODUCTS</h1>
+  </div>
+
+  <!-- <div
+    style="
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    "
+  >
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn dropdown-toggle"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        View in
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="toggleTable()">Table</a></li>
+        <li>
+          <a class="dropdown-item" (click)="toggleCard()">Card</a>
+        </li>
+      </ul>
+    </div>
+
+    
+      <h1>OUR PRODUCTS</h1>
+  
+
+
+
+    <div>
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        > 
+          Sort By
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" (click)="sorting('productName')"
+              >Name A-Z</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="sorting('-productName')"
+              >Name Z-A</a
+            > 
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="sorting('mrp')"
+              >Price:Low to High</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="sorting('-mrp')"
+              >Price:High to Low</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div> -->
+
+  <div class="container">
+    <table *ngIf="tableStatus" class="table table-striped">
+      <thead>
+        <tr>
+          <th class="idRow" scope="col">Product ID</th>
+
+          <th (click)="sort('productName')" scope="col">Product Name</th>
+          
+          <th scope="col">Category</th>
+          <th (click)="sort('mrp')" scope="col">MRP</th>  
+
+          <th (click)="sort('creationDate')"  scope="col">Created Date</th>
+          <th (click)="sort('expiryDate')"  scope="col">Expiry Date</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let product of products | orderBy:key:reverse" height="75px">
+
+          <td class="idRow"  scope="row">{{ product._id }} </td>
+
+          <td scope="row" style="background: linear-gradient(rgb(191, 148, 63), rgba(0, 0, 0, 0.1)), url({{product.productPic}})" class="text-light h5">
+
+          {{ product.productName }}
+          </td>
+          <td scope="row">{{ product.category }}</td>
+
+          <td scope="row">{{ product.mrp }}</td>
+
+          <td scope="row">{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
+
+          <td scope="row">{{ product.expiryDate | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    *ngIf="cardStatus"
+    class="row "
+    style="margin: auto !important"
+  >
+    <div
+      class="card col-4"
+     
+      *ngFor="let product of products"
+      style="width: 18rem; 
+      margin:30px auto;
+    background-size: cover;
+    background: linear-gradient(rgb(191, 148, 63), rgba(0, 0, 0, 0.556)),
+      no-repeat url({{product.productPic}})"
+
+
+    
+    >
+      <img
+        [src]="product.productPic"
+        class="card-img-top product1"
+        height="200px"
+        width="100%"
+        alt="..."
+      />
+
+      <div class="card-body">
+        <h3 class="card-title">{{ product.productName }}</h3>
+        <h5 class="card-title">{{ product.category }}</h5>
+        <h6 class="card-title">Packed on : {{ product.creationDate }}</h6>
+        <h6 class="card-title">Best Before : {{ product.expiryDate }}</h6>
+        <p class="card-title">{{ product.mrp | currency: "INR":"symbol" }}</p>
+        <a href="#" class="btn">Order</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+

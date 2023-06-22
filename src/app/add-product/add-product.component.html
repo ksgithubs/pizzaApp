@@ -1,0 +1,162 @@
+<div class="container-fluid">
+  <h1>Add Product</h1>
+</div>
+
+<div class="container">
+  <form
+    [formGroup]="productForm"
+    #ref="ngForm"
+    (ngSubmit)="ref.valid && formSubmit()"
+  > 
+    <!-- *productId -->
+    <div class="container row justify-content-center">
+      <div class="col-lg-6 col-sm-12">
+        <input
+          type="text"
+          formControlName="productPic"
+          class="form-control" 
+          onfocus="(this.type = 'file')"
+          (change)="onFileSelect($event)"
+          placeholder="Product Picture"
+        />
+
+        <div
+          *ngIf="
+            (productPic.invalid && productPic.touched) ||
+            productPic.dirty ||
+            ref.submitted
+          "
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="productPic.errors?.['required']">
+            Please Upload Product Picture *
+          </p>
+        </div>
+      </div>
+
+      <!-- *Product name -->
+
+
+      <div class="col-lg-6 col-sm-12">
+
+
+
+        <input
+          type="text"
+          formControlName="productName"
+          class="form-control"
+          placeholder="ProductName"
+        />
+
+        <div
+          *ngIf="
+            (productName.invalid && productName.touched) ||
+            productName.dirty ||
+            ref.submitted
+          "
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="productName.errors?.['required']">
+            Please Enter Valid Product Name*
+          </p>
+        </div>
+
+
+
+
+      </div>
+
+      <!-- *category -->
+      <div class="col-lg-6 col-sm-12">
+        <input
+          type="text"
+          formControlName="category"
+          class="form-control"
+          placeholder="Category"
+        />
+
+        <div
+          *ngIf="
+            (category.invalid && category.touched) ||
+            category.dirty ||
+            ref.submitted
+          "
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="category.errors?.['required']">Please Enter Category*</p>
+        </div>
+      </div>
+
+      <!-- * MRP -->
+      <div class="col-lg-6 col-sm-12">
+        <input 
+          type="number"
+          formControlName="mrp"
+          class="form-control"
+          placeholder="MRP"
+        />
+
+        <div
+          *ngIf="(mrp.invalid && mrp.touched) || mrp.dirty || ref.submitted"
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="mrp.errors?.['required']">Please Enter MRP*</p>
+        </div>
+      </div>
+
+      <!-- *creation date -->
+      <div class="col-lg-6 col-sm-12">
+        <input
+          type="text"
+          formControlName="creationDate"
+          class="form-control"
+          onfocus="(this.type = 'date')"
+          placeholder="Creation Date"
+        />
+        <div
+          *ngIf="
+            (creationDate.invalid && creationDate.touched) ||
+            creationDate.dirty ||
+            ref.submitted
+          "
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="creationDate.errors?.['required']">
+            Please Select a valid Date*
+          </p>
+        </div>
+      </div>
+
+      <!-- *Expiry date -->
+      <div class="col-lg-6 col-sm-12">
+        <input
+          type="text"
+          formControlName="expiryDate"
+          class="form-control"
+          placeholder="Expiry Date"
+          onfocus="(this.type = 'date')"
+        />
+        <div
+          *ngIf="
+            (expiryDate.invalid && expiryDate.touched) ||
+            expiryDate.dirty ||
+            ref.submitted
+          "
+          class="text-danger rounded-pill"
+        >
+          <p *ngIf="expiryDate.errors?.['required']">
+            Please Select valid Expiry Date*
+          </p>
+          
+        </div>
+      </div>
+
+      <!-- ?submit button -->
+      <div class="row mt-4">
+        <div class="col">
+          <button class="btn" type="submit">Create</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
